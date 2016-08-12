@@ -1,9 +1,9 @@
 # nine
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/zhuchunyu/nine.git
-git push -u origin master
-
-
+<p>git init</p>
+<p>git add README.md</p>
+<p>git commit -m "first commit"</p>
+<p>git remote add origin https://github.com/zhuchunyu/nine.git</p>
+<p>git push -u origin master</p>
+<p></p>
+<p></p>
 #end
