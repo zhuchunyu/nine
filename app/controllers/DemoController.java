@@ -13,6 +13,9 @@ import views.html.index;
 import play.libs.F.*;
 import static akka.pattern.Patterns.ask;
 
+/**
+ * Demo 控制器
+ */
 public class DemoController extends Controller {
 
     public static Result index() {
