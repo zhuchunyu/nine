@@ -3,6 +3,9 @@ import play.mvc.*;
 import play.mvc.Http.*;
 import play.libs.F.*;
 
+/**
+ * 错误处理器
+ */
 public class ErrorHandler implements HttpErrorHandler {
     public Promise<Result> onClientError(RequestHeader request, int statusCode, String message) {
         return Promise.<Result>pure(
