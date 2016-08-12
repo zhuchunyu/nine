@@ -7,5 +7,4 @@
 
 
 # run
-<p>sbt</p>
 <p>sbt run</p>
