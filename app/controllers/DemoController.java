@@ -3,16 +3,15 @@ package controllers;
 import akka.actor.ActorRef;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import filters.VerboseAction;
-import play.cache.Cache;
 import play.cache.Cached;
 import play.libs.Akka;
+import play.libs.F.Promise;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.With;
 import views.html.index;
 
-import play.libs.F.*;
 import static akka.pattern.Patterns.ask;
 
 /**
@@ -30,14 +29,10 @@ public class DemoController extends Controller {
         ObjectNode result = Json.newObject();
         result.put("name", "foobar");
         result.put("descr", "Hello world!");
-        Cache.set("cache", "hello redis cache");
         return ok(result);
     }
 
     public static Result show(Long id) {
-        Object cache = Cache.get("cache");
-        System.out.println(cache);
-        //System.out.println(cache.getClass());
         return ok(String.valueOf(id));
     }
 

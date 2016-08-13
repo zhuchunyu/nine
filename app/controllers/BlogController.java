@@ -30,6 +30,13 @@ public class BlogController extends Controller {
 
     public static Result show(Long id) {
         Blog blog = Ebean.find(Blog.class, id);
+
+        System.out.println(Json.toJson(Blog.find.byId(id)));
+        List<Blog> blogs = Blog.find.select("name").where().eq("id", id).findList();
+        System.out.println(Json.toJson(blogs));
+
+        System.out.println(Blog.find.findMap());
+
         return ok(Json.toJson(blog));
     }
 
