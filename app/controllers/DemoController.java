@@ -3,6 +3,8 @@ package controllers;
 import akka.actor.ActorRef;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import filters.VerboseAction;
+import play.cache.Cache;
+import play.cache.Cached;
 import play.libs.Akka;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -18,6 +20,7 @@ import static akka.pattern.Patterns.ask;
  */
 public class DemoController extends Controller {
 
+    @Cached(key = "homePage")
     public static Result index() {
         return ok(index.render("Your new application is ready."));
     }
@@ -27,10 +30,14 @@ public class DemoController extends Controller {
         ObjectNode result = Json.newObject();
         result.put("name", "foobar");
         result.put("descr", "Hello world!");
+        Cache.set("cache", "hello redis cache");
         return ok(result);
     }
 
     public static Result show(Long id) {
+        Object cache = Cache.get("cache");
+        System.out.println(cache);
+        //System.out.println(cache.getClass());
         return ok(String.valueOf(id));
     }
 
@@ -42,5 +49,9 @@ public class DemoController extends Controller {
         ActorRef helloActor = Akka.system().actorFor("user/actor");
         return Promise.wrap(ask(helloActor, message, 1000))
                 .map(response -> ok((String) response));
+    }
+
+    public static Result notfound() {
+        return notFound(index.render("notFound"));
     }
 }

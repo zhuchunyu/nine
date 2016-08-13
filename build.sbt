@@ -24,5 +24,13 @@ libraryDependencies ++= Seq(
     "org.mongodb" % "mongodb-driver" % "3.2.2",
     "joda-time" % "joda-time" % "2.9.4",
     "com.aliyun.oss" % "aliyun-sdk-oss" % "2.2.3",
-    "commons-lang" % "commons-lang" % "2.6"
+    "commons-lang" % "commons-lang" % "2.6",
+    "com.typesafe.play.modules" %% "play-modules-redis" % "2.4.1"
 )
+
+// redis-server cache
+//libraryDependencies += "com.github.karelcemus" %% "play-redis" % "1.0.0"
+
+// repository with the Brando connector
+//resolvers += "Brando Repository" at "http://chrisdinn.github.io/releases/"
+resolvers += "google-sedis-fix" at "http://pk11-scratch.googlecode.com/svn/trunk"

@@ -9,5 +9,14 @@ GET     /show/:id                   controllers.DemoController.show(id: Long)
 GET     /sync                       controllers.DemoController.sync
 GET     /actor/:message             controllers.DemoController.actor(message: String)
 
+GET     /notfound                   controllers.DemoController.notfound
+
+# ebean
+GET     /blog                       controllers.BlogController.index
+GET     /blog/post                  controllers.BlogController.post
+GET     /blog/$id<[0-9]+>           controllers.BlogController.show(id:Long)
+GET     /blogs                      controllers.BlogController.shows
+GET     /blogs/sql/:id              controllers.BlogController.sql(id:Long)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
