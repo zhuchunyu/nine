@@ -12,7 +12,7 @@ public class HelloActor extends UntypedActor {
 
     public void onReceive(Object message) throws Exception {
         Blog blog = Ebean.find(Blog.class, 1);
-        System.out.println(JSON.toJSON(blog));
+        System.out.println(JSON.toJSON(blog));//
         sender().tell("actor:"+message, self());
     }
 }
