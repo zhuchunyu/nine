@@ -25,6 +25,7 @@ libraryDependencies ++= Seq(
     "joda-time" % "joda-time" % "2.9.4",
     "com.aliyun.oss" % "aliyun-sdk-oss" % "2.2.3",
     "commons-lang" % "commons-lang" % "2.6",
+    "commons-io" % "commons-io" % "2.5",
     "com.typesafe.play.modules" %% "play-modules-redis" % "2.4.1"
 )
 
