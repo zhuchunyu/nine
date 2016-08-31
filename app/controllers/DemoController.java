@@ -11,6 +11,9 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.With;
 import views.html.index;
+import views.html.upload;
+
+import java.io.*;
 
 import static akka.pattern.Patterns.ask;
 
@@ -48,5 +51,36 @@ public class DemoController extends Controller {
 
     public static Result notfound() {
         return notFound(index.render("notFound"));
+    }
+
+    public static Result upload() {
+        return ok(upload.render("File Upload!"));
+    }
+
+    public static Result doUpload() throws Exception {
+
+        play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
+        play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("picture");
+        if (picture != null) {
+            String fileName = picture.getFilename();
+            System.out.println(fileName);
+            String contentType = picture.getContentType();
+            System.out.println(contentType);
+            java.io.File file = picture.getFile();
+            System.out.println(file.length());
+            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream("E:/file/play/"+fileName));
+            BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
+            byte[] buffer = new byte[4096];
+            int len;
+            while ((len = in.read(buffer)) != -1) {
+                out.write(buffer, 0, len);
+            }
+            in.close();
+            out.close();
+            return ok(upload.render("Do Upload Finished!"));
+        } else {
+            flash("error", "Missing file");
+            return badRequest(upload.render("Not Found Upload File!"));
+        }
     }
 }

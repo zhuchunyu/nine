@@ -10,6 +10,8 @@ GET     /sync                       controllers.DemoController.sync
 GET     /actor/:message             controllers.DemoController.actor(message: String)
 
 GET     /notfound                   controllers.DemoController.notfound
+GET     /upload                     controllers.DemoController.upload
+POST    /upload                     controllers.DemoController.doUpload
 
 # ebean
 GET     /blog                       controllers.BlogController.index
