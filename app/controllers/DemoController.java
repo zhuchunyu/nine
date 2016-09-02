@@ -1,6 +1,7 @@
 package controllers;
 
 import akka.actor.ActorRef;
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import filters.VerboseAction;
 import play.cache.Cached;
@@ -46,10 +47,20 @@ public class DemoController extends Controller {
         return Promise.promise(() -> ok("sync http"));
     }
 
+    public static Promise<Result> syncmap() {
+        return Promise.promise(() -> "helloasync").map(res -> ok((String) res));
+    }
+
     public static Promise<Result> actor(String message) {
         ActorRef helloActor = Akka.system().actorFor("user/actor");
         return Promise.wrap(ask(helloActor, message, 1000))
                 .map(response -> ok((String) response));
+    }
+
+    public static Promise<Result> blogActor(Long id) {
+        ActorRef blogActor = Akka.system().actorFor("user/blog");
+        return Promise.wrap(ask(blogActor, id, 1000))
+                .map(response -> { System.out.println(JSON.toJSON(response)); return ok(Json.toJson(response));});
     }
 
     public static Result notfound() {

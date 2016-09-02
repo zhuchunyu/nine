@@ -7,7 +7,9 @@ GET     /                           controllers.DemoController.index
 GET     /json                       controllers.DemoController.json
 GET     /show/:id                   controllers.DemoController.show(id: Long)
 GET     /sync                       controllers.DemoController.sync
+GET     /syncmap                    controllers.DemoController.syncmap
 GET     /actor/:message             controllers.DemoController.actor(message: String)
+GET     /actor/blog/:id             controllers.DemoController.blogActor(id: Long)
 
 GET     /notfound                   controllers.DemoController.notfound
 GET     /upload                     controllers.DemoController.upload

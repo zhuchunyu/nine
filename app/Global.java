@@ -1,3 +1,4 @@
+import actors.BlogActor;
 import actors.HelloActor;
 import play.*;
 import play.libs.Akka;
@@ -14,6 +15,7 @@ public class Global extends GlobalSettings {
 
     public void onStart(Application app) {
         Akka.system().actorOf(HelloActor.props, "actor");
+        Akka.system().actorOf(BlogActor.props, "blog");
         Logger.info("Application has started");
     }
 
