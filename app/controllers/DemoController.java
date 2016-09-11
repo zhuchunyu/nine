@@ -57,9 +57,17 @@ public class DemoController extends Controller {
                 .map(response -> ok((String) response));
     }
 
+    static ActorRef blogActor = null;
+
+    static ActorRef blogActor() {
+        if (blogActor == null) {
+            blogActor = Akka.system().actorFor("user/blog");
+        }
+        return blogActor;
+    }
+
     public static Promise<Result> blogActor(Long id) {
-        ActorRef blogActor = Akka.system().actorFor("user/blog");
-        return Promise.wrap(ask(blogActor, id, 1000))
+        return Promise.wrap(ask(blogActor(), id, 1000))
                 .map(response -> { System.out.println(JSON.toJSON(response)); return ok(Json.toJson(response));});
     }
 
