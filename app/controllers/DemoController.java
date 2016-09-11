@@ -68,7 +68,10 @@ public class DemoController extends Controller {
 
     public static Promise<Result> blogActor(Long id) {
         return Promise.wrap(ask(blogActor(), id, 1000))
-                .map(response -> { System.out.println(JSON.toJSON(response)); return ok(Json.toJson(response));});
+                .map(response -> {
+                    System.out.println(JSON.toJSON(response));
+                    return ok(Json.toJson(response));
+                });
     }
 
     public static Result notfound() {
@@ -90,7 +93,7 @@ public class DemoController extends Controller {
             System.out.println(contentType);
             java.io.File file = picture.getFile();
             System.out.println(file.length());
-            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream("E:/file/play/"+fileName));
+            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream("E:/file/play/" + fileName));
             BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
             byte[] buffer = new byte[4096];
             int len;
